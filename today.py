@@ -438,6 +438,8 @@ def stars_counter(data):
     """
     total_stars = 0
     for node in data:
+        if node["node"] is None:  # GitHub returns a null node for repos it can't resolve (e.g. under a hold)
+            continue
         total_stars += node["node"]["stargazers"]["totalCount"]
     return total_stars
 
